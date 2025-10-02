@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WHEN DATA COMES TO LIFE...</title>
+    <title>DIGITAL WELL-BEING: Digital Self-Portrait</title>
     <link rel="stylesheet" href="css/monitor.css">
 </head>
 <body>
     <div class="background-container">
-        <video id="background-video" loop autoplay muted playsinline>
+        <video id="background-video" loop muted>
             <source src="images/background.mp4" type="video/mp4">
         </video>
         <div class="noise-overlay" id="noise-overlay"></div>
@@ -16,8 +16,8 @@
 
     <div class="container">
         <header>
-            <h1>WHEN DATA COMES TO LIFE...</h1>
-            <p>Digital Well Being: EDG monitor</p>
+            <h1>DIGITAL WELL-BEING</h1>
+            <p>Digital Self-Portrait ECG Monitor</p>
             <a href="index.html" class="back-button">← BACK</a>
         </header>
 
@@ -72,11 +72,10 @@
                 all our data actually is.
             </p>
         </div>
-
-        <div class="sound-control">
-            <button id="playHeartbeat">Play Heartbeat</button>
-        </div>
     </div>
+
+    <script src="js/ecg-data.js"></script>
+    <script src="js/monitor.js"></script>
 
     <!-- Add heartbeat sound -->
     <audio id="heartbeatAudio">
