@@ -166,9 +166,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start animation
     drawECG();
     
-    // Ensure background video plays
-    const backgroundVideo = document.getElementById('background-video');
-    
     // Force play the video
     backgroundVideo.play().catch(function(error) {
         console.log("Video play failed: " + error);
@@ -181,4 +178,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, { once: true });
 });
-
