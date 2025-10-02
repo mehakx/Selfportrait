@@ -74,12 +74,12 @@
         </div>
 
         <div class="sound-control">
-            <button id="playHeartbeat">Play Heartbeat</button>
+            <button id="playHeartbeat" class="heartbeat-button">Play Heartbeat</button>
         </div>
     </div>
 
     <!-- Add heartbeat sound -->
-    <audio id="heartbeatAudio">
+    <audio id="heartbeatAudio" preload="auto">
         <source src="audio/heartbeat.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -88,24 +88,96 @@
     <script src="js/monitor.js"></script>
     
     <script>
-        // Get the audio element
-        const heartbeatAudio = document.getElementById('heartbeatAudio');
-        const playButton = document.getElementById('playHeartbeat');
-        
-        // Set volume (0.0 to 1.0)
-        heartbeatAudio.volume = 0.5;
-        
-        // Add click event to play button
-        playButton.addEventListener('click', function() {
-            if (heartbeatAudio.paused) {
-                heartbeatAudio.play();
-                playButton.textContent = "Pause Heartbeat";
-            } else {
-                heartbeatAudio.pause();
-                playButton.textContent = "Play Heartbeat";
-            }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the audio element and button
+            const heartbeatAudio = document.getElementById('heartbeatAudio');
+            const playButton = document.getElementById('playHeartbeat');
+            
+            // Make sure the audio is loaded
+            heartbeatAudio.load();
+            
+            // Set volume (0.0 to 1.0)
+            heartbeatAudio.volume = 0.5;
+            
+            // Add click event to play button
+            playButton.addEventListener('click', function() {
+                console.log("Button clicked");
+                if (heartbeatAudio.paused) {
+                    // Try to play the audio
+                    const playPromise = heartbeatAudio.play();
+                    
+                    // Handle play promise
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            // Playback started successfully
+                            console.log("Audio playing");
+                            playButton.textContent = "Pause Heartbeat";
+                            playButton.classList.add('playing');
+                        })
+                        .catch(error => {
+                            // Auto-play was prevented
+                            console.log("Audio play failed: " + error);
+                            // Try again with user interaction
+                            playButton.addEventListener('click', function() {
+                                heartbeatAudio.play();
+                            }, { once: true });
+                        });
+                    }
+                } else {
+                    // Pause the audio
+                    heartbeatAudio.pause();
+                    console.log("Audio paused");
+                    playButton.textContent = "Play Heartbeat";
+                    playButton.classList.remove('playing');
+                }
+            });
+            
+            // Debug info
+            console.log("Audio element found:", heartbeatAudio !== null);
+            console.log("Button element found:", playButton !== null);
+            console.log("Audio source:", heartbeatAudio.querySelector('source').src);
         });
     </script>
+    
+    <style>
+        /* Additional styling for the heartbeat button */
+        .heartbeat-button {
+            background-color: #00FF41;
+            color: black;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: monospace;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+        }
+        
+        .heartbeat-button:hover {
+            background-color: #00CC33;
+            transform: scale(1.05);
+        }
+        
+        .heartbeat-button.playing {
+            background-color: #FF6B6B;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .sound-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+    </style>
 </body>
 </html>
+
 
