@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+body {
+    background-color: #000;
+    color: #00FF41;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    overflow: hidden;
+}
+
+.noise-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/noise2.jpg');
+    background-size: cover;
+    opacity: 0.1;
+    mix-blend-mode: screen;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.content {
+    text-align: center;
+    max-width: 800px;
+    padding: 40px;
+    border: 1px solid #00FF41;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 20px rgba(0, 255, 65, 0.3); }
+    50% { box-shadow: 0 0 30px rgba(0, 255, 65, 0.5); }
+    100% { box-shadow: 0 0 20px rgba(0, 255, 65, 0.3); }
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.7);
+    cursor: pointer;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+h1:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 15px rgba(0, 255, 65, 0.9);
+}
+
+.concept {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.enter-button {
+    margin-top: 30px;
+}
+
+.enter-button a {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #00FF41;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.enter-button a:hover {
+    background-color: #000;
+    color: #00FF41;
+    border: 1px solid #00FF41;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 255, 65, 0.4);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .concept {
+        font-size: 1rem;
+    }
+    
+    .content {
+        padding: 30px;
+    }
+}

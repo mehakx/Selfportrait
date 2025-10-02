@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAL WELL-BEING: Digital Self-Portrait</title>
+    <link rel="stylesheet" href="css/monitor.css">
+</head>
+<body>
+    <div class="background-container">
+        <video id="background-video" loop muted>
+            <source src="images/background.mp4" type="video/mp4">
+        </video>
+        <div class="noise-overlay" id="noise-overlay"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>DIGITAL WELL-BEING</h1>
+            <p>Digital Self-Portrait ECG Monitor</p>
+            <a href="index.html" class="back-button">← BACK</a>
+        </header>
+
+        <div class="monitor-container">
+            <div class="monitor-header">
+                <span class="monitor-title">Digital Vital Signs Monitor</span>
+                <span class="status" id="status-text">CLARITY MODE - Clean Drive Pulse</span>
+            </div>
+            <div class="canvas-container">
+                <canvas id="ecgCanvas"></canvas>
+                <div class="grid-overlay"></div>
+            </div>
+        </div>
+
+        <div class="controls-container">
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span>Clarity ↔ Chaos Spectrum</span>
+                    <span id="chaos-level">0%</span>
+                </div>
+                <input type="range" id="chaosSlider" min="0" max="100" value="0" class="slider">
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-box drive">
+                <p class="stat-label">Drive Activities</p>
+                <p class="stat-value">37</p>
+            </div>
+            <div class="stat-box gmail">
+                <p class="stat-label">Gmail Searches</p>
+                <p class="stat-value">63</p>
+            </div>
+            <div class="stat-box search">
+                <p class="stat-label">Search Glitches</p>
+                <p class="stat-value">1</p>
+            </div>
+            <div class="stat-box total">
+                <p class="stat-label">Total Activities</p>
+                <p class="stat-value">101</p>
+            </div>
+        </div>
+
+        <div class="info-panel">
+            <p><strong>PATIENT:</strong> Digital Self</p>
+            <p><strong>MONITORING PERIOD:</strong> Mar 2024 - Sep 2025</p>
+            <p><strong>STATUS:</strong> <span class="blink">ACTIVE PRODUCTIVITY DETECTED</span></p>
+            <p class="concept">
+                <strong>CONCEPT:</strong> Our digital life exists on a spectrum from clarity to chaos. 
+                Drive activities form our productive heartbeat, while Gmail searches add noise layers 
+                and search data creates glitches. Move the slider to experience how overwhelming 
+                all our data actually is.
+            </p>
+        </div>
+    </div>
+
+    <script src="js/ecg-data.js"></script>
+    <script src="js/monitor.js"></script>
+</body>
+</html>
