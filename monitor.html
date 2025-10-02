@@ -74,37 +74,39 @@
         </div>
     </div>
 
-    <!-- Add heartbeat sound that plays on loop -->
-    <audio id="heartbeatAudio" loop autoplay>
-        <source src="audio/heartbeat.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <!-- Add this right before the closing </body> tag -->
 
-    <script src="js/ecg-data.js"></script>
-    <script src="js/monitor.js"></script>
+<!-- Add heartbeat sound -->
+<audio id="heartbeatAudio" loop>
+    <source src="audio/heartbeat.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<!-- Add a play button somewhere visible on your page -->
+<div class="sound-control">
+    <button id="playHeartbeat">Play Heartbeat</button>
+</div>
+
+<script>
+    // Get the audio element
+    const heartbeatAudio = document.getElementById('heartbeatAudio');
+    const playButton = document.getElementById('playHeartbeat');
     
-    <!-- Script to ensure heartbeat plays -->
-    <script>
-        // Get the audio element
-        const heartbeatAudio = document.getElementById('heartbeatAudio');
-        
-        // Set volume (0.0 to 1.0)
-        heartbeatAudio.volume = 1.0;
-        
-        // Ensure it plays when the page loads
-        window.addEventListener('load', function() {
-            heartbeatAudio.play().catch(function(error) {
-                console.log("Audio play failed: " + error);
-            });
-            
-            // Try to play again on user interaction (browsers often require this)
-            document.body.addEventListener('click', function() {
-                heartbeatAudio.play().catch(function(error) {
-                    console.log("Audio play failed: " + error);
-                });
-            }, { once: true });
-        });
-    </script>
+    // Set volume (0.0 to 1.0)
+    heartbeatAudio.volume = 0.5;
+    
+    // Add click event to play button
+    playButton.addEventListener('click', function() {
+        if (heartbeatAudio.paused) {
+            heartbeatAudio.play();
+            playButton.textContent = "Pause Heartbeat";
+        } else {
+            heartbeatAudio.pause();
+            playButton.textContent = "Play Heartbeat";
+        }
+    });
+</script>
+
 </body>
 </html>
 
