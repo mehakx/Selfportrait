@@ -96,8 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
             patternPosition = 0;
         }
 
-        // Set line style based on chaos level - INCREASED LINE WIDTH FROM 2 TO 4
-        ctx.lineWidth = 4;
+        // Set line style based on chaos level
+        ctx.lineWidth = 4; // Thicker line for better visibility
         
         // Draw the ECG line
         ctx.beginPath();
@@ -165,5 +165,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Start animation
     drawECG();
+    
+    // Ensure background video plays
+    const backgroundVideo = document.getElementById('background-video');
+    
+    // Force play the video
+    backgroundVideo.play().catch(function(error) {
+        console.log("Video play failed: " + error);
+    });
+    
+    // Try to play again on user interaction
+    document.body.addEventListener('click', function() {
+        backgroundVideo.play().catch(function(error) {
+            console.log("Video play failed: " + error);
+        });
+    }, { once: true });
 });
 
